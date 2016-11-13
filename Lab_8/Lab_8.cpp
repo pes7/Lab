@@ -2,89 +2,129 @@
 //
 
 #include "stdafx.h"
-#include "stdio.h"
-#include "Windows.h"
-#include "Math.h"
-#include "locale.h"
-#include "string.h"
+#include "CMenu.cpp"
 
-#define pause _pause()
-#define cls _cls()
-#define arr_size(arr)  (sizeof arr / sizeof arr[0])
-
-void _cls() {
-	system("cls");
+#define wt _getch();
+void _say(char *str) {
+	printf_s("%s",str);
 }
+#define say(text) _say(text);
+#define error say("Ошибка Ввода."); rewind(stdin); wt;
 
-void _pause() {
-	system("pause");
-}
+void NReTranslateToString();
+void NIsPalendomizm();
 
-int perim(int x, int y) {
-	int num = (x + y) * 2;
-	return num;
-}
-
-void again();
-void start();
-void l_start(int);
-
-int main()
-{
+int main() {
+	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	start();
-    return 0;
+
+	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	int slots = 0;
+	Menu *menu = NULL;
+
+	menu = CMenu(menu, 2);
+
+	menu->text[menu->slots].str = "D)Переобразование номера месяца в его название";
+	menu->binds[menu->slots].binds = "DВ";
+	menu->binds[menu->slots].count = 2;
+	menu->pointers[menu->slots] = (int)(void*)&NReTranslateToString;
+	menu->slots++;
+
+	menu->text[menu->slots].str = "F)Проверка слова на палиндромизм";
+	menu->binds[menu->slots].binds = "FА";
+	menu->binds[menu->slots].count = 2;
+	menu->pointers[menu->slots] = (int)(void*)&NIsPalendomizm;
+
+	menu->properties.header = "Меню программы:";
+	menu->properties.height = 0;
+	menu->properties.coords.x = 7;
+	menu->properties.coords.y = 4;
+	menu->properties.size.height = 11;
+	menu->properties.size.width = 51;
+	menu->properties.dbreak.binds = "PЗ";
+	menu->properties.dbreak.count = 2;
+	menu->properties.prioritet = 0;
+
+	SmartChoose(menu);
+
+	_getch();
+
+	return 1;
 }
 
-static int my_array[] = { 0,1,2,3,4,5,6,7,8,9,0,11 };
-
-void l_start(int w) {
-	if (w < arr_size(my_array)) {
-		printf("%d", my_array[w]);
-		w++;
-		l_start(w);
+void NReTranslateToString() {
+	int num;
+	say("Впишите число месяца: ");
+	if (scanf_s("%d", &num)) {
+		say("Выбраный месяц: ");
+		switch (num)
+		{
+		case 1:
+			say("Январь");
+			break;
+		case 2:
+			say("Февраль");
+			break;
+		case 3:
+			say("Март");
+			break;
+		case 4:
+			say("Апрель");
+			break;
+		case 5:
+			say("Май");
+			break;
+		case 6:
+			say("Июнь");
+			break;
+		case 7:
+			say("Июль");
+			break;
+		case 8:
+			say("Август");
+			break;
+		case 9:
+			say("Сентябрь");
+			break;
+		case 10:
+			say("Октябрь");
+			break;
+		case 11:
+			say("Ноябрь");
+			break;
+		case 12:
+			say("Декабрь");
+			break;
+		default:
+			say("Не коректное число месяца.");
+			wt;
+			break;
+		}
+	} else {
+		error;
 	}
-	else {
-		printf("\n");
-		pause;
+	wt;
+}
+
+void NIsPalendomizm() {
+	char *chr;
+	int err = 0, lengh;
+	chr = (char*)malloc(sizeof(chr));
+	say("Введите слово: ");
+	if (fgets(chr, 100, stdin)) {
+		lengh = strlen(chr);
+		for (int i = 0; i <= lengh - 2 && err == 0; i++) {
+			if (toupper(chr[i]) != toupper(chr[lengh - i - 2])) {
+				err = 1;
+			}
+		}
+		if (err == 0) {
+			say("Слово палиндром");
+		}else{ say("Слово не палиндром"); }
+	} else {
+		error;
 	}
+	wt;
 }
-
-void choose() {
-	int i,x,y,num;
-	scanf_s("%d", &i);
-	switch (i) {
-	case 1:
-		cls;
-		printf_s("Введите сторону a: ");
-		scanf_s("%d", &x);
-		cls;
-		printf_s("Введите сторону y: ");
-		scanf_s("%d", &y);
-		cls;
-		num = perim(x,y);
-		printf_s("Периметер прямоугольника (%d,%d) есть: %d \n",x,y,num);
-		pause;
-		break;
-	case 2:
-		cls;
-		l_start(0);
-		break;
-	default:
-		again();
-		break;
-	}
-}
-
-void start() {
-	printf("Select lab:\n1)Переметер прямокутника\n2)Рекурсивный массив\n");
-	choose();
-}
-
-
-void again() {
-	cls;
-	start();
-}
-
