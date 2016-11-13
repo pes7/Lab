@@ -1,0 +1,8 @@
+﻿  Lister.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(50): warning C4101: 'string': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(49): warning C4101: 'de': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(49): warning C4101: 'ke': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(55): warning C4101: 'nums': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(80): warning C4133: '=': incompatible types - from 'Item *' to 'int *'
+  Lister.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lister.exe
+  Lister.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lister.pdb (Full PDB)

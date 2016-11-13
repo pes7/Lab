@@ -1,0 +1,3 @@
+﻿  stdafx.cpp
+  Lab_3_1.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_3_1\lab_3_1.cpp(72): error C3861: '_getch': identifier not found

@@ -1,0 +1,19 @@
+﻿  Sort.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(31): warning C4047: 'return': 'int' differs in levels of indirection from 'int *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(39): warning C4047: 'return': 'int' differs in levels of indirection from 'int *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(82): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(92): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(110): warning C4013: '_getch' undefined; assuming extern returning int
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(124): warning C4047: 'function': 'int' differs in levels of indirection from 'void *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(124): warning C4024: 'shacer': different types for formal and actual parameter 2
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(140): warning C4047: 'function': 'int' differs in levels of indirection from 'void *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(140): warning C4024: 'shella': different types for formal and actual parameter 2
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(150): warning C4047: 'function': 'int' differs in levels of indirection from 'void *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(150): warning C4024: 'counte': different types for formal and actual parameter 2
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(162): warning C4101: 'arr': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(162): warning C4101: 'elem': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(218): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(260): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\sort\sort.cpp(332): warning C4047: '=': 'int *' differs in levels of indirection from 'int'
+  Sort.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Sort.exe
+  Sort.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Sort.pdb (Full PDB)

@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Lab.vcxproj, Lab_1_1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Lab.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab\lab.cpp(60): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+  Lab.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_1.exe
+  Lab.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_1.pdb (Full PDB)

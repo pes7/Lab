@@ -1,0 +1,7 @@
+﻿  Lab_6.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_6\lab_6.cpp(99): warning C4047: '=': 'int *' differs in levels of indirection from 'std::size_t'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_6\lab_6.cpp(136): warning C4047: '<': 'int' differs in levels of indirection from 'int *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_6\lab_6.cpp(137): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_6\lab_6.cpp(151): warning C4013: '_getch' undefined; assuming extern returning int
+  Lab_6.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_6.exe
+  Lab_6.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_6.pdb (Full PDB)
