@@ -121,8 +121,8 @@ void NIsPalendomizm() {
 			}
 		}
 		if (err == 0) {
-			say("Слово палиндром");
-		}else{ say("Слово не палиндром"); }
+			say("YES");
+		}else{ say("NO"); }
 	} else {
 		error;
 	}
