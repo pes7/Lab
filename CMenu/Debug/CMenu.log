@@ -1,20 +1,7 @@
-﻿  CMenu.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(120): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(126): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(192): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(228): warning C4018: '<': signed/unsigned mismatch
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(274): warning C4018: '<=': signed/unsigned mismatch
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(318): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(324): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(330): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(354): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(360): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(366): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(372): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(378): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(384): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(408): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(414): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\cmenu\cmenu.cpp(420): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
-  CMenu.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CMenu.exe
+﻿  stdafx.cpp
+  Test.cpp
+  Structures.cpp
+  CMenu.cpp
+  Generating Code...
+  CMenu.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CMenu.dll
   CMenu.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CMenu.pdb (Full PDB)

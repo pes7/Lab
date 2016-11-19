@@ -53,19 +53,19 @@ int main()
 
 	menu->text[menu->slots].str = "D)Стек";
 	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&stek_menu;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "F)Дек";
 	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_menu;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "G)Лист";
 	menu->binds[menu->slots].binds = "GП";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&sap;
 
 	menu->properties.header = "Меню программы:";
@@ -75,7 +75,7 @@ int main()
 	menu->properties.size.height = 14;
 	menu->properties.size.width = 30;
 	menu->properties.dbreak.binds = "PЗ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 0;
 
 	SmartChoose(menu);
@@ -177,19 +177,19 @@ void stek_menu() {
 
 	menu->text[menu->slots].str = "X)Главные функции";
 	menu->binds[menu->slots].binds = "XЧ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&stek_glavn;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "C)Дополнительные функции";
 	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&stek_dop;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Стек:";
@@ -199,7 +199,7 @@ void stek_menu() {
 	menu->properties.size.height = 14;
 	menu->properties.size.width = 29;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 1;
 
 	SmartChoose(menu);
@@ -214,31 +214,31 @@ void stek_glavn() {
 
 	menu->text[menu->slots].str = "D)Создать стек";
 	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&StekCreateStek;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "F)PUSH";
 	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&StekPush;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "G)POP";
 	menu->binds[menu->slots].binds = "GП";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&StekPop;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "C)Получение размера очереди";
 	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&StekHowMuchElems;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Главные функции:";
@@ -248,7 +248,7 @@ void stek_glavn() {
 	menu->properties.size.height = 20;
 	menu->properties.size.width = 32;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 2;
 
 	SmartChoose(menu);
@@ -263,19 +263,19 @@ void stek_dop() {
 
 	menu->text[menu->slots].str = "D)Згенирировать рандомные елементы";
 	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&StekDopRandElems;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "F)Показать весь стек";
 	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&StekShowElems;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Дополнительные функции:";
@@ -285,7 +285,7 @@ void stek_dop() {
 	menu->properties.size.height = 22;
 	menu->properties.size.width = 39;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 2;
 
 	SmartChoose(menu);
@@ -300,19 +300,19 @@ void dek_menu() {
 
 	menu->text[menu->slots].str = "X)Главные функции";
 	menu->binds[menu->slots].binds = "XЧ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_glavn;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "C)Дополнительные функции";
 	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_dop;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Дек:";
@@ -322,7 +322,7 @@ void dek_menu() {
 	menu->properties.size.height = 14;
 	menu->properties.size.width = 29;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 1;
 
 	SmartChoose(menu);
@@ -337,31 +337,31 @@ void dek_glavn() {
 
 	menu->text[menu->slots].str = "D)Создать Дек";
 	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&DekCreateDek;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "F)PUSH";
 	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_menu_push;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "G)POP";
 	menu->binds[menu->slots].binds = "GП";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_menu_pop;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "C)Получение размера очереди";
 	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&DekHowMuchElems;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Главные функции:";
@@ -371,7 +371,7 @@ void dek_glavn() {
 	menu->properties.size.height = 20;
 	menu->properties.size.width = 32;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 2;
 
 	SmartChoose(menu);
@@ -386,19 +386,19 @@ void dek_menu_push() {
 
 	menu->text[menu->slots].str = "X)Положить на верх";
 	menu->binds[menu->slots].binds = "XЧ";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_push_up;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "C)Положить с низу";
 	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&dek_push_down;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Push:";
@@ -408,7 +408,7 @@ void dek_menu_push() {
 	menu->properties.size.height = 14;
 	menu->properties.size.width = 29;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 1;
 
 	SmartChoose(menu);
@@ -423,13 +423,13 @@ void dek_dop() {
 
 	menu->text[menu->slots].str = "F)Показать весь стек";
 	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
+	
 	menu->pointers[menu->slots] = (int)(void*)&DekShowElems;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "Z)Назад";
 	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
+	
 	menu->pointers[menu->slots] = (int)NULL;
 
 	menu->properties.header = "Дополнительные функции:";
@@ -439,12 +439,48 @@ void dek_dop() {
 	menu->properties.size.height = 22;
 	menu->properties.size.width = 39;
 	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
+	
 	menu->properties.prioritet = 2;
 
 	SmartChoose(menu);
 }
 
+/*Dek_pop_vib*/
+void dek_menu_pop() {
+	int slots = 0;
+	Menu *menu = NULL;
+
+	menu = CMenu(menu, 3);
+
+	menu->text[menu->slots].str = "X)Снять с верху";
+	menu->binds[menu->slots].binds = "XЧ";
+	
+	menu->pointers[menu->slots] = (int)(void*)&dek_pop_up;
+	menu->slots++;
+
+	menu->text[menu->slots].str = "C)Снять с низу";
+	menu->binds[menu->slots].binds = "CС";
+	
+	menu->pointers[menu->slots] = (int)(void*)&dek_pop_down;
+	menu->slots++;
+
+	menu->text[menu->slots].str = "Z)Назад";
+	menu->binds[menu->slots].binds = NULL;
+	
+	menu->pointers[menu->slots] = (int)NULL;
+
+	menu->properties.header = "Pop:";
+	menu->properties.height = 0;
+	menu->properties.coords.x = 7;
+	menu->properties.coords.y = 4;
+	menu->properties.size.height = 14;
+	menu->properties.size.width = 29;
+	menu->properties.dbreak.binds = "ZЯ";
+	
+	menu->properties.prioritet = 1;
+
+	SmartChoose(menu);
+}
 
 void dek_push_up() {
 	DekPush(0);
@@ -504,43 +540,6 @@ void DekShowElems() {
 		ShowDek(GDek, nums);
 	}
 	else { error; }
-}
-
-/*Dek_pop_vib*/
-void dek_menu_pop() {
-	int slots = 0;
-	Menu *menu = NULL;
-
-	menu = CMenu(menu, 3);
-
-	menu->text[menu->slots].str = "X)Снять с верху";
-	menu->binds[menu->slots].binds = "XЧ";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (int)(void*)&dek_pop_up;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "C)Снять с низу";
-	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (int)(void*)&dek_pop_down;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "Z)Назад";
-	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
-	menu->pointers[menu->slots] = (int)NULL;
-
-	menu->properties.header = "Pop:";
-	menu->properties.height = 0;
-	menu->properties.coords.x = 7;
-	menu->properties.coords.y = 4;
-	menu->properties.size.height = 14;
-	menu->properties.size.width = 29;
-	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
-	menu->properties.prioritet = 1;
-
-	SmartChoose(menu);
 }
 
 

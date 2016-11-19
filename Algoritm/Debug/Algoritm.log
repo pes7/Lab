@@ -1,4 +1,5 @@
-﻿  Structs.cpp
+﻿  stdafx.cpp
+  Structs.cpp
   Stek.cpp
   SDek.cpp
   List.cpp

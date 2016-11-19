@@ -1,71 +1,26 @@
 // CMenu.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+#include "Structures.cpp"
 #include "Windows.h"
 #include "locale.h"
 #include "string.h"
 #include "time.h"
-#include<conio.h>
+#include "conio.h"
 
-#define error _error()
-//#define cls _cls()
-#define say(text) _say(text);
-#define pause _pause();
+	/*------------------------------------------------------\
+	|*Создатель Назар Уколов							    |
+	|*Ссылка на репрозиторий: https://github.com/pes7/CMenu |
+	|*Ссылка вк: https://vk.com/wowpes7						|
+	-------------------------------------------------------*/
 
-void _pause() {
-	system("pause");
-}
-
-void _error() {
-	printf_s("Ошибка ввода!\n ");
-	rewind(stdin);
-}
-
-void _say(char *text) {
-	printf_s(text);
-}
-
-void _cls() {
-	system("cls");
-}
-
-typedef struct {
-	char *str;
-	int lengh;
-} Word;
-
-typedef struct {
-	char *binds;
-	int count;
-} Binds;
-
-typedef struct {
-	int x;
-	int y;
-} Point;
-
-typedef struct {
-	int width;
-	int height;
-} Size;
-
-typedef struct {
-	Point coords;
-	Size size;
-	Binds dbreak;
-	int height;
-	int prioritet;
-	char *header;
-} Properties;
-
-typedef struct {
-	Word *text;
-	Binds *binds;
-	Properties properties;
-	int *pointers;
-	int slots;
-} Menu;
+HANDLE hStdout;
+void Say(char*, Point*);
+void MassageBox(char*, int, Point*);
+void CrateBorder(Point*, Point*);
+void SmartChoose(Menu*);
+Menu *CMenu(Menu*, int);
+void MenuFree(Menu*);
 
 /*Кастомная очистка екрана*/
 void cls(HANDLE hConsole)
@@ -92,56 +47,6 @@ void cls(HANDLE hConsole)
 	SetConsoleCursorPosition(hConsole, coordScreen);
 }
 
-void MassageBox(char*, int, Point*);
-void CrateBorder(Point*, Point*);
-void Say(char*, Point*);
-void SmartChoose(Menu*);
-Menu *CMenu(Menu*, int);
-void sap();
-void stek_menu();
-void stek_glavn();
-void stek_dop();
-void MenuFree(Menu*);
-
-int main()
-{
-	setlocale(LC_ALL, "RUS");
-	SetConsoleCP(1251); // Ввод с консоли в кодировке 1251
-	SetConsoleOutputCP(1251);
-
-	int slots = 0;
-	Menu *menu = NULL;
-
-	menu = CMenu(menu, 2);
-
-	menu->text[menu->slots].str = "D)Стек";
-	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_menu;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "F)Дек";
-	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&sap;
-
-	menu->properties.header = "Меню программы:";
-	menu->properties.height = 0;
-	menu->properties.coords.x = 7;
-	menu->properties.coords.y = 4;
-	menu->properties.size.height = 19;
-	menu->properties.size.width = 30;
-	menu->properties.dbreak.binds = "PЗ";
-	menu->properties.dbreak.count = 2;
-	menu->properties.prioritet = 0;
-
-	SmartChoose(menu);
-
-	_getch();
-
-    return 0;
-}
-
 /*Выделение памяти на Menu*/
 Menu *CMenu(Menu *menu, int slots) {
 	menu = (Menu*)malloc(sizeof(Menu));
@@ -157,7 +62,7 @@ Menu *CMenu(Menu *menu, int slots) {
 /*Инициализация меню*/
 void SmartChoose(Menu *menu) {
 	char i;
-	int d = 0, j, g;
+	unsigned int d = 0, j, g;
 	Point p, p1;
 	HANDLE hStdout;
 	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -180,7 +85,7 @@ void SmartChoose(Menu *menu) {
 			p.y = 1 + j * (menu->properties.height + 3) + menu->properties.coords.y;
 			MassageBox(menu->text[j].str, menu->properties.height, &p);
 		}
-		/*----------------- */
+		/*------------------*/
 		i = _getch();
 		i = toupper(i);
 		//printf_s("You pressed: %c\n",i);
@@ -188,8 +93,8 @@ void SmartChoose(Menu *menu) {
 		if (menu->slots > 0) {
 			for (j = 0; j <= menu->slots; j++) {
 				if (menu->binds[j].binds != NULL) {
-					for (g = 0; g < menu->binds[j].count; g++) {
-						if (menu->binds[j].binds[g] == i && menu->binds[j].binds[g] != NULL) {
+					for (g = 0; g < strlen(menu->binds[j].binds); g++) {
+						if (menu->binds[j].binds[g] == i && menu->binds[j].binds[g] != (int)NULL) {
 							cls(hStdout);
 							void(*does)() = (void*)menu->pointers[j];
 							if (*does != NULL) {
@@ -202,7 +107,7 @@ void SmartChoose(Menu *menu) {
 		}
 		/*Проверка на перерывание если таковое имееться*/
 		if (menu->properties.dbreak.binds != NULL) {
-			for (j = 0; j < menu->properties.dbreak.count; j++) {
+			for (j = 0; j < strlen(menu->properties.dbreak.binds); j++) {
 				if (i == menu->properties.dbreak.binds[j]) {
 					d = 1;
 				}
@@ -224,7 +129,7 @@ void MenuFree(Menu *menu) {
 void Say(char* string, Point* p) {
 	HANDLE consoleoutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD Coord;
-	int i;
+	unsigned int i;
 	for (i = 0; i < strlen(string); i++) {
 		Coord.X = i + p->x;
 		Coord.Y = p->y;
@@ -269,7 +174,8 @@ void CrateBorder(Point* p, Point* p1) {
 void MassageBox(char* string, int sl, Point* p) {
 	HANDLE consoleoutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD Coord;
-	int er = 1, i, j;
+	int er = 1, i;
+	unsigned int j;
 	for (i = 0; i < sl + 3; i++) {
 		for (j = 0; j <= strlen(string) + 1; j++) {
 			Coord.X = j + p->x;
@@ -306,132 +212,4 @@ void MassageBox(char* string, int sl, Point* p) {
 	}
 }
 
-void stek_menu() {
-	int slots = 0;
-	Menu *menu = NULL;
-
-	menu = CMenu(menu, 3);
-
-	menu->text[menu->slots].str = "X)Главные функции";
-	menu->binds[menu->slots].binds = "XЧ";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_glavn;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "C)Дополнительные функции";
-	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_dop;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "Z)Назад";
-	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
-	menu->pointers[menu->slots] = NULL;
-
-	menu->properties.header = "Стек:";
-	menu->properties.height = 0;
-	menu->properties.coords.x = 7;
-	menu->properties.coords.y = 4;
-	menu->properties.size.height = 19;
-	menu->properties.size.width = 29;
-	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
-	menu->properties.prioritet = 1;
-
-	SmartChoose(menu);
-}
-
-void stek_glavn() {
-	int slots = 0;
-	Menu *menu = NULL;
-
-	menu = CMenu(menu, 6);
-
-	menu->text[menu->slots].str = "D)Создать стек";
-	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_glavn;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "F)Добавление елемента";
-	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_dop;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "G)Чтение первого елемента";
-	menu->binds[menu->slots].binds = "GП";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_dop;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "X)Удаление первого елемента";
-	menu->binds[menu->slots].binds = "XЧ";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_dop;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "C)Получение размера очереди";
-	menu->binds[menu->slots].binds = "CС";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_dop;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "Z)Назад";
-	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
-	menu->pointers[menu->slots] = NULL;
-
-	menu->properties.header = "Главные функции:";
-	menu->properties.height = 0;
-	menu->properties.coords.x = 7;
-	menu->properties.coords.y = 4;
-	menu->properties.size.height = 22;
-	menu->properties.size.width = 32;
-	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
-	menu->properties.prioritet = 2;
-
-	SmartChoose(menu);
-}
-
-void stek_dop() {
-	int slots = 0;
-	Menu *menu = NULL;
-
-	menu = CMenu(menu, 3);
-
-	menu->text[menu->slots].str = "D)Згенирировать рандомные елементы";
-	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_glavn;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "F)Показать весь стек";
-	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (void*)&stek_dop;
-	menu->slots++;
-
-	menu->text[menu->slots].str = "Z)Назад";
-	menu->binds[menu->slots].binds = NULL;
-	menu->binds[menu->slots].count = 0;
-	menu->pointers[menu->slots] = NULL;
-
-	menu->properties.header = "Дополнительные функции:";
-	menu->properties.height = 0;
-	menu->properties.coords.x = 7;
-	menu->properties.coords.y = 4;
-	menu->properties.size.height = 22;
-	menu->properties.size.width = 39;
-	menu->properties.dbreak.binds = "ZЯ";
-	menu->properties.dbreak.count = 2;
-	menu->properties.prioritet = 2;
-
-	SmartChoose(menu);
-}
-
-void sap() {
-	printf_s("Дек!!!\n");
-}
+#include "stdafx.h"
