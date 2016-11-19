@@ -122,7 +122,7 @@ void NIsPalendomizm() {
 		}
 		if (err == 0) {
 			say("YES");
-		}else{ say("NO"); }
+		} else{ say("NO"); }
 	} else {
 		error;
 	}

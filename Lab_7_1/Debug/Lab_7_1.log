@@ -1,7 +1,8 @@
-﻿  Lab_7_1.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(71): warning C4013: '_getch' undefined; assuming extern returning int
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(114): warning C4013: 'Check' undefined; assuming extern returning int
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(125): warning C4047: 'return': 'int *' differs in levels of indirection from 'int **'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(113): warning C4477: 'scanf_s' : format string '%d' requires an argument of type 'int *', but variadic argument 1 has type 'int **'
+﻿  stdafx.cpp
+  Lab_7_1.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(68): warning C4013: '_getch' undefined; assuming extern returning int
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(123): warning C4013: 'Check' undefined; assuming extern returning int
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(138): warning C4047: 'return': 'int *' differs in levels of indirection from 'int **'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_7_1\lab_7_1.cpp(122): warning C4477: 'scanf_s' : format string '%d' requires an argument of type 'int *', but variadic argument 1 has type 'int **'
   Lab_7_1.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_7_new.exe
   Lab_7_1.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_7_new.pdb (Full PDB)

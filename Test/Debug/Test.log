@@ -1,4 +1,5 @@
-﻿  Test.cpp
+﻿  stdafx.cpp
+  Test.cpp
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\test\test.cpp(276): warning C4133: '=': incompatible types - from 'Item *' to 'int *'
   Test.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Test.exe
   Test.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Test.pdb (Full PDB)

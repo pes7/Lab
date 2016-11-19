@@ -1,7 +1,8 @@
-﻿  Rus.cpp
+﻿  stdafx.cpp
+  Rus.cpp
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\rus\rus.cpp(17): warning C4002: too many actual parameters for macro 'вывод'
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\rus\rus.cpp(17): warning C4473: 'printf_s' : not enough arguments passed for format string
   c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\rus\rus.cpp(17): note: placeholders and their parameters expect 1 variadic arguments, but 0 were provided
   c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\rus\rus.cpp(17): note: the missing variadic argument 1 is required by format string '%d'
-  Rus.vcxproj -> C:\Users\ukolo\OneDrive\документы\visual studio 2015\Projects\Lab\Debug\Rus.exe
-  Rus.vcxproj -> C:\Users\ukolo\OneDrive\документы\visual studio 2015\Projects\Lab\Debug\Rus.pdb (Full PDB)
+  Rus.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Rus.exe
+  Rus.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Rus.pdb (Full PDB)

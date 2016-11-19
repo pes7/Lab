@@ -1,4 +1,5 @@
-﻿  Tree.cpp
+﻿  stdafx.cpp
+  Tree.cpp
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\tree\tree.cpp(9): warning C4101: 'x': unreferenced local variable
   Tree.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Tree.exe
   Tree.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Tree.pdb (Full PDB)

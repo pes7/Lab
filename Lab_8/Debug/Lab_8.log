@@ -1,4 +1,8 @@
-﻿  Lab_8.cpp
+﻿  stdafx.cpp
+  Lab_8.cpp
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_8\cmenu.cpp(75): warning C4013: '_getch' undefined; assuming extern returning int
+  Defines.cpp
+  CMenu.cpp
+  Generating Code...
   Lab_8.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_8.exe
   Lab_8.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_8.pdb (Full PDB)

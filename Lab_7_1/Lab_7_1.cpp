@@ -9,29 +9,23 @@
 #define error _error()
 #define say(text) _say(text);
 
-void _say(char *text) {
-	printf_s(text);
-}
-
-void _cls() {
-	system("cls");
-}
-
-void _error() {
-	printf_s("Ошибка ввода!\n");
-	rewind(stdin);
-}
-
+void _say(char*);
+void _cls();
+void _error();
 int *CrateArray(int, int);
 int *SortArray(int*,int, int);
 int main()
 {
+	int *arr, /*Указатель на массив*/
+		n, /*Границы массива*/
+		m, /*Границы массива*/
+		i, /*Счётчик цикла*/
+		j; /*Счётчик цикла*/
+
 	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	system("color 70");
-
-	int *arr, n, m, i, j;
 	start:
 	/*Задаём границы*/
 	cls;
@@ -52,21 +46,27 @@ int main()
 	cls;
 	/*Создаём массив*/
 	arr = CrateArray(n, m);
-	say("Отсортированый массив: \n");
-	/*Отсортируем массив*/
-	arr = SortArray(arr,n,m);
-	say("arr = |");
-	/*Выводим массив*/
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < m; j++) {
-			printf_s(" %d", *(arr + i * m + j));
+	if (arr != NULL) {
+		say("Отсортированый массив: \n");
+		/*Отсортируем массив*/
+		arr = SortArray(arr, n, m);
+		say("arr = |");
+		/*Выводим массив*/
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < m; j++) {
+				printf_s(" %d", *(arr + i * m + j));
+			}
+			if (i != n - 1) {
+				say(" |\n      |");
+			}
+			else {
+				say(" |");
+			}
 		}
-		if (i != n - 1) {
-			say(" |\n      |");
-		}
-		else {
-			say(" |");
-		}
+	} else {
+		say("Ошибка. Слишком большой массив!");
+		_getch();
+		goto start;
 	}
 	_getch();
 	say("\n");
@@ -76,7 +76,12 @@ int main()
 
 /*Сортировка пузырьком*/
 int *SortArray(int  *arr, int n, int m) {
-	int u = 0, i, j, last, ee = 1;
+	int u = 0, /*Число удачных расположений*/
+		i, /*Счётчик цикла*/
+		j, /*Счётчик цикла*/
+		last, /*Число которое заминяеться*/
+		ee = 1; /*Условие работы цикла*/
+
 	while (ee) {
 		for (i = 0; i < n; i++) {
 			for (j = 0; j < m - 1; j++) {
@@ -103,35 +108,58 @@ int *SortArray(int  *arr, int n, int m) {
 
 /*Создание массива*/
 int *CrateArray(int n, int m) {
-	int **arr, i, j;
+	int **arr, /*Указатель на двухмерный массив*/
+		i, /*Счётчик цикла*/
+		j; /*Счётчик цикла*/
+
 	arr = (int**)malloc(sizeof(int) * n * m);
 	say("Заполните массив: \n");
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < m; j++) {
+	if (arr != NULL) {
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < m; j++) {
 			de:
-			printf_s("arr[%d][%d] = ",i,j);
-			if (scanf_s("%d", (arr + i * m + j))) {
-				if (!Check(n,m,arr,i,j)) {
-					say("\nВы ввели повторяющийся елемент!\n");
+				printf_s("arr[%d][%d] = ", i, j);
+				if (scanf_s("%d", (arr + i * m + j))) {
+					if (!Check(n, m, arr, i, j)) {
+						say("\nВы ввели повторяющийся елемент!\n");
+						goto de;
+					}
+				}
+				else {
+					error;
 					goto de;
 				}
-			} else {
-				error;
-				goto de;
 			}
+			say("\n");
 		}
-		say("\n");
+	} else {
+		return 0;
 	}
 	return arr;
 }
 
 /*Проверка на совпадение елементов в строке*/
 int Check(int n, int m, int *arr, int cur_i, int cur_j) {
-	int j, err = 1;
+	int j, /*Счётчик цикла*/
+		err = 1; /*Условие ошибки.*/
+
 	for (j = 0; j < n; j++) {
 		if (*(arr + cur_i * m + cur_j) == *(arr + j * m + cur_j) && j != cur_i) {
 			err = 0;
 		}
 	}
 	return err;
+}
+
+void _say(char *text) {
+	printf_s(text);
+}
+
+void _cls() {
+	system("cls");
+}
+
+void _error() {
+	printf_s("Ошибка ввода!\n");
+	rewind(stdin);
 }
