@@ -38,28 +38,33 @@ typedef struct {
 	unsigned int slots;
 } Menu;
 
+/*Елемент стека*/
 typedef struct {
 	int number; /*Значение*/
 	int *previus; /*Предыдущий елемент*/
 } StekItem;
 
+/*Дескриптор стека*/
 typedef struct {
 	StekItem *first; /*Первый елемент*/
 	int count; /*Размер*/
 } StekDescr;
 
+/*Елемент дека*/
 typedef struct {
 	int number; /*Значение*/
 	int *previus; /*Следующий елемент*/
 	int *after; /*Предыдущий елемент*/
 } DekItem;
 
+/*Дескриптор дека*/
 typedef struct {
 	DekItem *first; /*Первый елемент*/
 	DekItem *last; /*Последний елемент*/
 	int count; /*Размер*/
 } DekDescr;
 
+/*Лист*/
 struct List {
 	int num; /*Число*/
 	struct List *next; /*Ссылка не следующий узел*/

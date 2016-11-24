@@ -1,6 +1,4 @@
-﻿  Structures.cpp
-  Lister.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(35): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+﻿  Lister.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(24): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
   Lister.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lister.exe
   Lister.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lister.pdb (Full PDB)

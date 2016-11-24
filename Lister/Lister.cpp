@@ -1,6 +1,3 @@
-// Lister.cpp : Defines the entry point for the console application.
-//
-
 #include "stdafx.h"
 #include "CMenu.cpp"
 #include "Defines.h"
@@ -8,15 +5,14 @@
 #include "StekH.h"
 #include "ListH.h"
 
-int menu_mode;
-StekDescr *SDes;
-DekDescr *DDes;
-struct List *GList;
+StekDescr *SDes; /*Указатель на дескриптор стека*/
+DekDescr *DDes; /*Указатель на дескриптор дека*/
+struct List *GList; /*Указатель на список*/
 
 int main()
 {
-	int slots = 0;
-	Menu *menu = NULL;
+	int slots = 0; /*Количество пунктов меню*/
+	Menu *menu = NULL; /*Указатель на меню*/
 	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
@@ -57,15 +53,17 @@ int main()
 	return 0;
 }
 
+/*Генирация рандомного стека*/
 void StekGeneration(int count) {
-	int i;
+	int i; /*Счётчик цикла*/
 	for (i = 0; i < count; i++) {
 		StekCreateItem(rand() % count + 1, SDes);
 	}
 }
 
+/*Генирация рандомного стека*/
 void StekGenerations() {
-	int num;
+	int num; /*Количество елементов*/
 	if (SDes == NULL) {
 		SDes = StekCreateDescr();
 	}
@@ -88,19 +86,22 @@ void StekGenerations() {
 	}
 }
 
+/*Создание дескриптора стека*/
 StekDescr* StekCreateDescr() {
-	StekDescr *des;
+	StekDescr *des; /*Указатель на дескриптор стека*/
 	des = (StekDescr*)malloc(sizeof(StekDescr));
 	des->first = NULL;
 	des->count = 0;
 	return des;
 }
 
+/*Создание елемента стека*/
 StekDescr* StekCreateItem(int number, StekDescr *des) {
+	StekItem* item; /*Указатель на елемент стека*/
 	if (des == NULL) {
 		des = StekCreateDescr();
 	}
-	StekItem* item = (StekItem*)malloc(sizeof(StekItem));
+	item = (StekItem*)malloc(sizeof(StekItem));
 	item->previus = (int*)des->first;
 	item->number = number;
 
@@ -109,9 +110,10 @@ StekDescr* StekCreateItem(int number, StekDescr *des) {
 	return des;
 }
 
+/*Снятие(Удаление) елемента стека*/
 StekDescr* StekDeletItem(StekDescr *des) {
+	StekItem *last; /*Указатель на елемент стека*/
 	if (des->count > 1) {
-		StekItem *last;
 		last = des->first;
 		des->first = (StekItem*)des->first->previus;
 		free(last);
@@ -123,6 +125,7 @@ StekDescr* StekDeletItem(StekDescr *des) {
 	return des;
 }
 
+/*Проверка на некоторые ошибки при роботе с стеком*/
 int SetkError(StekDescr *des) {
 	if (des != NULL) {
 		if ((void*)des->count != NULL) {
@@ -145,8 +148,9 @@ int SetkError(StekDescr *des) {
 	}
 }
 
+/*Вложение(Создание) елемента стека*/
 void StekPush() {
-	int num;
+	int num; /*Просто число*/
 	say("Введите число: ");
 	if (scanf_s("%d", &num)) {
 		SDes = StekCreateItem(num, SDes);
@@ -158,6 +162,7 @@ void StekPush() {
 	_getch();
 }
 
+/*Снятие(Удаление) елемента стека*/
 void StekPop() {
 	if (SetkError(SDes)) {
 		SDes = StekDeletItem(SDes);
@@ -171,10 +176,13 @@ void StekPop() {
 	}
 }
 
+/*Функция показа стека*/
 void StekShow() {
-	FILE *file;
-	StekItem *dl = SDes->first;
-	int i, count = 0, *arr;
+	FILE *file; /*Указатель на файл вывода*/
+	StekItem *dl = SDes->first; /*Указатель на елемент стека*/
+	int i, /*счётчик*/
+		count = 0, /*счётчик цифр в строке файла*/
+		*arr; /*указатель на массив*/
 	if (SDes->count < 500) {
 		arr = (int*)malloc(sizeof(int)*SDes->count);
 		for (i = 0; i < SDes->count; i++) {
@@ -210,6 +218,7 @@ void StekShow() {
 	}
 }
 
+/*Фукнция показа количеста елементов в стеке*/
 void StekCount() {
 	if (SetkError(SDes)) {
 		printf_s("В стеке: %d елементов.\n", SDes->count);
@@ -220,8 +229,9 @@ void StekCount() {
 
 /*DECK ZONE*/
 
+/*Создание дескриптора дека*/
 DekDescr *DekCreation() {
-	DekDescr *des;
+	DekDescr *des; /*Указатель на дескриптор дека*/
 	des = (DekDescr*)malloc(sizeof(DekDescr));
 	des->count = 0;
 	des->first = NULL;
@@ -229,16 +239,18 @@ DekDescr *DekCreation() {
 	return des;
 }
 
+/*Генирация рандомных елементов для дека*/
 DekDescr *DekGeneration(DekDescr *des,int count) {
-	int i;
+	int i; /*Счётчик*/
 	for (i = 0; i < count; i++) {
 		des = DekCreateItem(rand() % count + 1,0, des);
 	}
 	return des;
 }
 
+/*Генирация рандомных елементов для дека*/
 void DekGenerations() {
-	int num;
+	int num; /*Количество елементов*/
 	if(DDes == NULL){
 		DDes = DekCreation();
 	}
@@ -261,9 +273,10 @@ void DekGenerations() {
 	}
 }
 
+/*Создание елемента дека*/
 DekDescr* DekCreateItem(int number,int type,DekDescr *des) {
-	DekItem* item = (DekItem*)malloc(sizeof(DekItem));
-	DekItem* iteml;
+	DekItem* item = (DekItem*)malloc(sizeof(DekItem)); /*Указатель на елемент дека*/
+	DekItem* iteml; /*Указатель на елемент дека*/
 	if (des == NULL) {
 		des = DekCreation();
 	}
@@ -299,8 +312,9 @@ DekDescr* DekCreateItem(int number,int type,DekDescr *des) {
 	return des;
 }
 
+/*Удаление елемента дека*/
 DekDescr* DekDeletItem(DekDescr *des,int type) {
-	DekItem *last;
+	DekItem *last; /*Удаление елемента дека*/
 	if (des->count > 1) {
 		switch (type)
 		{
@@ -325,6 +339,7 @@ DekDescr* DekDeletItem(DekDescr *des,int type) {
 	return des;
 }
 
+/*Проверка на некоторые ошибки при работе с деком*/
 int DekError(DekDescr *des) {
 	if (des != NULL) {
 		if ((void*)des->count != NULL) {
@@ -347,13 +362,15 @@ int DekError(DekDescr *des) {
 	}
 }
 
+/*Пару спареных функций, для меню (Создают елементы и убирают их)*/
 void DPU() { DDes = DekPush(DDes, 0); DekShow(); _getch(); }
-void DPD() { DDes = DekPush(DDes,1); DekShow(); _getch(); }
+void DPD() { DDes = DekPush(DDes, 1); DekShow(); _getch(); }
 void DOU() { DDes = DekPop(DDes, 0); if (DDes != NULL) { DekShow(); _getch(); } }
 void DOD() { DDes = DekPop(DDes, 1); if (DDes != NULL) { DekShow(); _getch(); } }
 
+/*Положить елемент в дек(Создать новый елемент)*/
 DekDescr *DekPush(DekDescr *des,int type) {
-	int num;
+	int num; /*Просто число*/
 	say("Введите число: ");
 	if (scanf_s("%d", &num)) {
 		des = DekCreateItem(num, type, des);
@@ -364,9 +381,10 @@ DekDescr *DekPush(DekDescr *des,int type) {
 	return des;
 }
 
+/*Снять елемент с дека(Удалить елемент)*/
 DekDescr *DekPop(DekDescr* des,int type) {
-	int last;
-	DekItem *now;
+	int last; /*Значение прошлого елемента*/
+	DekItem *now; /*Указатель на дескриптор дека*/
 	if (DekError(des)) {
 		if (des->count > 1) {
 			if (type == 0) {
@@ -392,10 +410,12 @@ DekDescr *DekPop(DekDescr* des,int type) {
 	return des;
 }
 
+/*Визуализация дека*/
 void DekShow() {
-	FILE *file;
-	DekItem *dl;
-	int i, count = 0;
+	FILE *file; /*Указатель на файл*/
+	DekItem *dl; /*Указатель на елемент дека*/
+	int i, /*Счётчик*/ 
+		count = 0; /*счётчик цифр в строке файла*/
 	if (DDes->count < 500) {
 	    dl = DDes->last;
 		say("Дек: ");
@@ -422,6 +442,7 @@ void DekShow() {
 	}
 }
 
+/*Подсчёт елементов дека*/
 void DekCount() {
 	if (DDes != NULL) {
 		printf_s("В деке %d елементов.\n", DDes->count);
@@ -434,15 +455,19 @@ void DekCount() {
 
 /*------SPISOK-ZONE-------*/
 
+/*Создание первого елемента списка*/
 struct List *CreateFirstElem(int num) {
+	/*Указатель на структуру списка*/
 	struct List *list = (struct List*)malloc(sizeof(struct List));
 	list->num = num;
 	list->next = list;
 	return list;
 }
 
+/*Добавить елемент в список*/
 struct List *AddItem(struct List *list, int num) {
-	struct List *item, *p;
+	struct List *item, /*Указатель на елемент списка*/
+				*p; /*Указатель на елемент списка*/
 	if (IsListEmpty(list)) {
 		item = (struct List*)malloc(sizeof(struct List));
 		p = list->next;
@@ -456,19 +481,12 @@ struct List *AddItem(struct List *list, int num) {
 	return list;
 }
 
-struct List *GetSelectedItem(struct List *list, int elem) {
-	struct List *p = list;
-	printf_s("[%d]\n", p->num);
-	for (int i = 0; i < elem; i++) {
-		p = p->next;
-		printf_s("[%d]\n", p->num);
-	}
-	return p;
-}
-
+/*Визуализация листа*/
 void ListShow(struct List *list) {
-	struct List *p;
-	int *arra = (int*)malloc(sizeof(int)), i = 0, j = 0;
+	struct List *p; /*Указатель на список*/
+	int *arra = (int*)malloc(sizeof(int)), /*Указатель на масив*/
+		i = 0, /*Счётчик*/
+		j = 0; /*Счётчик*/
 	p = list;
 	if (IsListEmpty(list)) {
 		if (GiveCountOfList(list) < 500) {
@@ -501,9 +519,12 @@ void ListShow(struct List *list) {
 	}
 }
 
+/*Добавить елемент в список по указаному индексу*/
 struct List *ListAddIndexedElement(struct List *list, int index, int number, int method) {
-	int i = 0;
-	struct List *item, *p, *l = list;
+	int i = 0; /*Счётчик*/
+	struct List *item, /*Указатель на елемент списка*/
+				*p, /*Указатель на елемент списка*/
+				*l = list; /*Указатель на елемент списка*/
 	item = (struct List*)malloc(sizeof(struct List));
 
 	/*Вставить после*/
@@ -526,9 +547,10 @@ struct List *ListAddIndexedElement(struct List *list, int index, int number, int
 	return list;
 }
 
+/*Удаление указаного елемента по индексу*/
 struct List *RemoveIndexedElement(struct List *list, int index) {
-	int i;
-	struct List *l = list;
+	int i; /*Счётчик*/
+	struct List *l = list; /*Указатель на список*/
 	if (GiveCountOfList(list) > 1) {
 		for (i = 0; i < GiveCountOfList(list) - index; i++) {
 			l = l->next;
@@ -541,9 +563,10 @@ struct List *RemoveIndexedElement(struct List *list, int index) {
 	return list;
 }
 
+/*Получить число елементов*/
 int GiveCountOfList(struct List *list) {
-	struct List *l = list;
-	int i = 0;
+	struct List *l = list; /*Указатель на список*/
+	int i = 0; /*Счётчик*/
 	if (IsListEmpty(list)) {
 		do {
 			l = l->next;
@@ -553,16 +576,18 @@ int GiveCountOfList(struct List *list) {
 	return i;
 }
 
+/*Проверка на пустой список*/
 int IsListEmpty(struct List *list) {
-	int i = 1;
+	int i = 1; /*Ошибка*/
 	if (list == NULL) {
 		i = 0;
 	}
 	return i;
 }
 
+/*Убрать елемент с списка*/
 void RemoveItemFromList() {
-	int i;
+	int i; /*Счётчик*/
 	if (IsListEmpty(GList)) {
 		ListShow(GList);
 		say("\nВведите номер елемента списка который вы хотите удалить: ");
@@ -590,6 +615,7 @@ void RemoveItemFromList() {
 	}
 }
 
+/*Добавить елемент в список*/
 void AddItemList() {
 	int num;
 	say("Введите число: ");
@@ -603,8 +629,10 @@ void AddItemList() {
 	}
 }
 
+/*Добавить елемент в конкретное место списка по индексу*/
 void AddIndexedItemList(int mode) {
-	int num, index;
+	int num, /*Просто число*/
+		index; /*Индекс после/до которого будет наш елемент*/
 	ListShow(GList);
 	say("\nВведите индекс узла: ");
 	if (scanf_s("%d", &index)) {
@@ -644,6 +672,7 @@ void AddIndexedItemList(int mode) {
 	}
 }
 
+/*Получение количества елементов списка*/
 void GetCountList() {
 	if (IsListEmpty(GList)) {
 		printf_s("В списке %d елемент/та/тов\n", GiveCountOfList(GList));
@@ -655,16 +684,19 @@ void GetCountList() {
 	}
 }
 
+/*Для меню, фукция добавления елемента в спиок*/
 void ALU() {
 	AddIndexedItemList(0);
 }
-
+/*Для меню, фукция добавления елемента в спиок*/
 void ALD() {
 	AddIndexedItemList(1);
 }
 
+/*Поиск елемента в списке по индексу*/
 void ListSearchByIndex() {
-	int index,i;
+	int index, /*Индекс*/
+		i; /*Счётчик*/
 	struct List *l = GList;
 	if (GList != NULL) {
 		say("Введите индекс искуемого елемента: ");
@@ -689,8 +721,13 @@ void ListSearchByIndex() {
 	}
 }
 
+/*Поиск елемента в спике по значению*/
 void ListSearchByNum() {
-	int i, num, nen = 0, k = 0, *arr = (int*)malloc(sizeof(int)*GiveCountOfList(GList));
+	int i, /*Счётчик*/
+		num, /*Число*/
+		nen = 0, /*Нашло ли*/
+		k = 0, /*Количество найденых индексов*/
+		*arr = (int*)malloc(sizeof(int)*GiveCountOfList(GList));
 	struct List *l = GList;
 	if (GList != NULL) {
 		say("Введите число которое содержит искуемый елемент: ");
@@ -734,12 +771,14 @@ void ListSearchByNum() {
 	}
 }
 
+/*Генирация рандомного списка*/
 void ListGeneration() {
-	int co, i;
+	int co, /*Количество елементов*/
+		i; /*Счётчик*/
 	say("Сколько елементов сгенирировать: ");
 	if (scanf_s("%d", &co)) {
 		if (co > 1) {
-			if (co < 2000000) {
+			if (co < 25000000) {
 				for (i = 0; i < co; i++) {
 					GList = AddItem(GList, rand() % co + 1);
 				}
