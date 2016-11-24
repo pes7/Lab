@@ -1,0 +1,21 @@
+#pragma once
+extern struct List *CreateFirstElem(int num);
+extern struct List *AddItem(struct List *list, int num);
+extern struct List *GetSelectedItem(struct List *list, int elem);
+extern struct List *ListAddIndexedElement(struct List *list, int index, int number, int method);
+extern struct List *RemoveIndexedElement(struct List *list, int index);
+extern int GiveCountOfList(struct List *list);
+extern int IsListEmpty(struct List *list);
+extern void AddIndexedItemList(int mode);
+extern void ListShow(struct List *list);
+extern void ALU();
+extern void ALD();
+extern void ListSearchByNum();
+extern void GetCountList();
+extern void list_glavn();
+extern void list_menu_add();
+extern void RemoveItemFromList();
+extern void list_menu_search();
+extern void ListSearchByIndex();
+extern void ListGeneration();
+extern void AddItemList();

@@ -175,15 +175,7 @@ int main()
 
 	list = ListAddIndexedElement(list, 2, 1488, 0);
 
-	list = RemoveIndexedElement(list, 1);
-	list = RemoveIndexedElement(list, 2);
-	list = RemoveIndexedElement(list, 3);
-	list = RemoveIndexedElement(list, 4);
 	list = RemoveIndexedElement(list, 5);
-	list = RemoveIndexedElement(list, 6);
-	list = RemoveIndexedElement(list, 7);
-
-	list = RemoveIndexedElement(list, 0);
 
 	list = AddItem(list, 228);
 	list = AddItem(list, 1);

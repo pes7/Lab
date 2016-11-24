@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "Structures.cpp"
+#include "Headers.h"
+
+extern StekDescr *SDes;
 
 void StekGeneration(int count) {
 	int i;

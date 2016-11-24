@@ -13,15 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Stek">
-      <UniqueIdentifier>{403f96f3-5420-4210-9870-e38edb0f83d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Dek">
-      <UniqueIdentifier>{a25d5d23-5625-482e-9bf9-b1ef7cd030ed}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="List">
-      <UniqueIdentifier>{63b9ac7f-c3a9-48fa-badc-9e96117ce804}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -33,10 +24,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StekH.h">
-      <Filter>Stek</Filter>
+    <ClInclude Include="DekH.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers.h">
+    <ClInclude Include="StekH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -52,9 +49,6 @@
     </ClCompile>
     <ClCompile Include="Structures.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Stek.cpp">
-      <Filter>Stek</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

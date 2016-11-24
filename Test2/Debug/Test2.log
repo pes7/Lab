@@ -1,5 +1,5 @@
 ﻿  Test2.cpp
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\test2\test2.cpp(45): warning C4013: 'IsListEmpty' undefined; assuming extern returning int
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\test2\test2.cpp(72): warning C4013: 'GiveCountOfList' undefined; assuming extern returning int
-  Test2.vcxproj -> C:\Users\ukolo\OneDrive\документы\visual studio 2015\Projects\Lab\Debug\Test2.exe
-  Test2.vcxproj -> C:\Users\ukolo\OneDrive\документы\visual studio 2015\Projects\Lab\Debug\Test2.pdb (Full PDB)
+  Test2.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Test2.exe
+  Test2.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Test2.pdb (Full PDB)
