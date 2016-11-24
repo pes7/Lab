@@ -9,7 +9,9 @@
 
 #include <stdio.h>
 #include <tchar.h>
-
+#include "Windows.h"
+#include "conio.h"
+#include "locale.h"
 
 
 // TODO: reference additional headers your program requires here

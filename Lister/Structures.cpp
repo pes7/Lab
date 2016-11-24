@@ -37,3 +37,30 @@ typedef struct {
 	int *pointers;
 	unsigned int slots;
 } Menu;
+
+typedef struct {
+	int number; /*Значение*/
+	int *previus; /*Предыдущий елемент*/
+} StekItem;
+
+typedef struct {
+	StekItem *first; /*Первый елемент*/
+	int count; /*Размер*/
+} StekDescr;
+
+typedef struct {
+	int number; /*Значение*/
+	int *previus; /*Следующий елемент*/
+	int *after; /*Предыдущий елемент*/
+} DekItem;
+
+typedef struct {
+	DekItem *first; /*Первый елемент*/
+	DekItem *last; /*Последний елемент*/
+	int count; /*Размер*/
+} DekDescr;
+
+struct List {
+	int num; /*Число*/
+	struct List *next; /*Ссылка не следующий узел*/
+};

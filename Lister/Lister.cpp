@@ -1,6 +1,13 @@
 // Lister.cpp : Defines the entry point for the console application.
 //
 
+/*
+	1)Добавить, и немного дописать лист Test2
+	2)Вынести всё в файлы
+	
+	3)Дописать какой елемент снят при последнем снятии в стеке
+*/
+
 #include "stdafx.h"
 #include "CMenu.cpp"
 
@@ -38,20 +45,19 @@ typedef struct {
 	int count; /*Размер*/
 } DekDescr;
 
-typedef struct {
-	int number;
-	int *next;
-} SpisItem;
-
-typedef struct {
-	int count;
-	SpisItem *first;
-} SpisDescr;
+struct List { 
+	int num; /*Число*/
+	struct List *next; /*Ссылка не следующий узел*/
+};
 
 StekDescr *StekCreateItem(int, StekDescr*);
 StekDescr* StekDeletItem(StekDescr*);
-
+StekDescr* StekCreateDescr();
 DekDescr* DekCreateItem(int, int , DekDescr*);
+DekDescr* DekDeletItem(DekDescr*, int);
+DekDescr* DekPop(DekDescr*, int);
+DekDescr* DekPush(DekDescr*, int);
+DekDescr* DekGeneration(DekDescr*, int);
 
 void sap();
 void stek_menu();
@@ -67,8 +73,7 @@ void dek_menu_pop();
 int SetkError(StekDescr*);
 int DekError(DekDescr*);
 void StekShow();
-void DekPush(int);
-void DekPop(int);
+
 void DekCount();
 void StekGeneration(int);
 void StekGenerations();
@@ -88,13 +93,6 @@ int main()
 	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-
-	SDes = (StekDescr*)malloc(sizeof(StekDescr));
-	SDes->count = 0;
-
-	DDes = (DekDescr*)malloc(sizeof(DekDescr));
-	DDes->count = 0;
-	DDes->last = NULL;
 
 	hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -138,12 +136,20 @@ void StekGeneration(int count) {
 
 void StekGenerations() {
 	int num;
+	if (SDes == NULL) {
+		SDes = StekCreateDescr();
+	}
 	say("Сколько елементов сгенирировать: ");
 	if (scanf_s("%d", &num)) {
-		if (num < 25000000) {
+		if (num < 25000000 && num > 0) {
 			StekGeneration(num);
-			say("Стек сгенирирован успешно.");
-		} else {
+			say("Стек сгенирирован успешно.\n");
+			StekShow();
+			_getch();
+		} if (num < 1) {
+			say("Слишком мало елементов!");
+			_getch();
+		} if (num > 25000000) {
 			say("Слишком много елементов!");
 			_getch();
 		}
@@ -152,7 +158,18 @@ void StekGenerations() {
 	}
 }
 
+StekDescr* StekCreateDescr() {
+	StekDescr *des;
+	des = (StekDescr*)malloc(sizeof(StekDescr));
+	des->first = NULL;
+	des->count = 0;
+	return des;
+}
+
 StekDescr* StekCreateItem(int number, StekDescr *des) {
+	if (des == NULL) {
+		des = StekCreateDescr();
+	}
 	StekItem* item = (StekItem*)malloc(sizeof(StekItem));
 	item->previus = (int*)des->first;
 	item->number = number;
@@ -163,21 +180,34 @@ StekDescr* StekCreateItem(int number, StekDescr *des) {
 }
 
 StekDescr* StekDeletItem(StekDescr *des) {
-	StekItem *last;
-	last = des->first;
-	des->first = (StekItem*)des->first->previus;
-	free(last);
-	des->count--;
+	if (des->count > 1) {
+		StekItem *last;
+		last = des->first;
+		des->first = (StekItem*)des->first->previus;
+		free(last);
+		des->count--;
+	} else {
+		free(des);
+		des = NULL;
+	}
 	return des;
 }
 
 int SetkError(StekDescr *des) {
-	if (des->count != 0) {
-		if (des->count < 2) {
-			say("Ошибка. В стеке 1 елемент, снятие не возможно!");
+	if (des != NULL) {
+		if ((void*)des->count != NULL) {
+			if (des->count < 1) {
+				say("Ошибка. В стеке 0 елементов, снятие не возможно!");
+				_getch();
+				return 0;
+			}
+			else { return 1; }
+		}
+		else {
+			say("Ошибка. Стек пустой!");
 			_getch();
 			return 0;
-		} else { return 1; }
+		}
 	} else {
 		say("Ошибка. Стек пустой!");
 		_getch();
@@ -201,11 +231,13 @@ void StekPush() {
 void StekPop() {
 	if (SetkError(SDes)) {
 		SDes = StekDeletItem(SDes);
-		printf_s("Верхннй елемент убран, теперь новый верхний елемент: %d\n", SDes->first->number);
-		StekShow();
+		if (SDes != NULL) {
+			printf_s("Верхннй елемент убран, теперь новый верхний елемент: %d\n", SDes->first->number);
+			StekShow();
+		}else{
+			printf_s("Стек был полностью очисчен.");
+		}
 		_getch();
-	} else {
-		
 	}
 }
 
@@ -223,7 +255,8 @@ void StekShow() {
 		for (i = SDes->count - 1; i >= 0; i--) {
 			printf_s("%d,", arr[i]);
 		}
-	} else {
+	}
+	else if (SDes->count < 2000000) {
 		dl = SDes->first;
 		arr = (int*)malloc(sizeof(int)*SDes->count);
 		for (i = 0; i < SDes->count; i++) {
@@ -242,31 +275,54 @@ void StekShow() {
 		fclose(file);
 		say("Слишком много елементов для вывода, вывод произвидён в файл StekElems.txt в папке с программой");
 	}
+	else {
+		say("Слишком много елементов даже для вывода в файл, так что вы не увидете его :) ");
+	}
 }
 
 void StekCount() {
-	printf_s("В стеке: %d елементов.\n", SDes->count);
-	StekShow();
-	_getch();
+	if (SetkError(SDes)) {
+		printf_s("В стеке: %d елементов.\n", SDes->count);
+		StekShow();
+		_getch();
+	}
 }
 
 /*DECK ZONE*/
 
-void DekGeneration(int count) {
+DekDescr *DekCreation() {
+	DekDescr *des;
+	des = (DekDescr*)malloc(sizeof(DekDescr));
+	des->count = 0;
+	des->first = NULL;
+	des->last = NULL;
+	return des;
+}
+
+DekDescr *DekGeneration(DekDescr *des,int count) {
 	int i;
 	for (i = 0; i < count; i++) {
-		DekCreateItem(rand() % count + 1,0,DDes);
+		des = DekCreateItem(rand() % count + 1,0, des);
 	}
+	return des;
 }
 
 void DekGenerations() {
 	int num;
+	if(DDes == NULL){
+		DDes = DekCreation();
+	}
 	say("Сколько елементов сгенирировать: ");
 	if (scanf_s("%d", &num)) {
-		if (num < 25000000) {
-			DekGeneration(num);
-			say("Дек сгенирирован успешно.");
-		} else {
+		if (num < 24000000 && num > 0) {
+			DDes = DekGeneration(DDes,num);
+			say("Дек сгенирирован успешно.\n");
+			DekShow();
+			_getch();
+		} if (num < 1) {
+			say("Слишком мало елементов!");
+			_getch();
+		} if (num > 25000000) {
 			say("Слишком много елементов!");
 			_getch();
 		}
@@ -278,6 +334,9 @@ void DekGenerations() {
 DekDescr* DekCreateItem(int number,int type,DekDescr *des) {
 	DekItem* item = (DekItem*)malloc(sizeof(DekItem));
 	DekItem* iteml;
+	if (des == NULL) {
+		des = DekCreation();
+	}
 	switch (type) {
 		case 0:
 			if (des->last == NULL) {
@@ -312,8 +371,9 @@ DekDescr* DekCreateItem(int number,int type,DekDescr *des) {
 
 DekDescr* DekDeletItem(DekDescr *des,int type) {
 	DekItem *last;
-	switch (type)
-	{
+	if (des->count > 1) {
+		switch (type)
+		{
 		case 0:
 			last = des->first;
 			des->first = (DekItem*)des->first->after;
@@ -326,17 +386,30 @@ DekDescr* DekDeletItem(DekDescr *des,int type) {
 			free(last);
 			des->count--;
 			break;
+		}
+	} else {
+		free(des->first);
+		free(des);
+		des = NULL;
 	}
 	return des;
 }
 
 int DekError(DekDescr *des) {
-	if (des->count != 0) {
-		if (des->count < 2) {
-			say("Ошибка. В деке 1 елемент, снятие не возможно!");
+	if (des != NULL) {
+		if ((void*)des->count != NULL) {
+			if (des->count < 1) {
+				say("Ошибка. В деке 0 елементов, снятие не возможно!");
+				_getch();
+				return 0;
+			}
+			else { return 1; }
+		}
+		else {
+			say("Ошибка. Дек пустой!");
 			_getch();
 			return 0;
-		} else { return 1; }
+		}
 	} else {
 		say("Ошибка. Дек пустой!");
 		_getch();
@@ -344,43 +417,49 @@ int DekError(DekDescr *des) {
 	}
 }
 
-void DPU() { DekPush(0); }
-void DPD() { DekPush(1); }
-void DOU() { DekPop(0); }
-void DOD() { DekPop(1); }
+void DPU() { DDes = DekPush(DDes, 0); DekShow(); _getch(); }
+void DPD() { DDes = DekPush(DDes,1); DekShow(); _getch(); }
+void DOU() { DDes = DekPop(DDes, 0); if (DDes != NULL) { DekShow(); _getch(); } }
+void DOD() { DDes = DekPop(DDes, 1); if (DDes != NULL) { DekShow(); _getch(); } }
 
-void DekPush(int type) {
+DekDescr *DekPush(DekDescr *des,int type) {
 	int num;
 	say("Введите число: ");
 	if (scanf_s("%d", &num)) {
-		DDes = DekCreateItem(num, type, DDes);
+		des = DekCreateItem(num, type, des);
 		say("Новый елемент добавлен!\n");
-		DekShow();
 	} else {
 		error;
 	}
-	_getch();
+	return des;
 }
 
-void DekPop(int type) {
+DekDescr *DekPop(DekDescr* des,int type) {
 	int last;
 	DekItem *now;
-	if (DekError(DDes)) {
-		if (type == 0) {
-			printf_s("Первый");
-			last = DDes->first->number;
-			DDes = DekDeletItem(DDes, type);
-			now = (DekItem*)DDes->first->number;
+	if (DekError(des)) {
+		if (des->count > 1) {
+			if (type == 0) {
+				printf_s("Первый");
+				last = des->first->number;
+				des = DekDeletItem(des, type);
+				now = (DekItem*)des->first->number;
+			}
+			else {
+				printf_s("Последний");
+				last = des->last->number;
+				des = DekDeletItem(des, type);
+				now = (DekItem*)des->last->number;
+			}
+			printf_s(" елемент %d снят, новый последний елемент %d\n", (int)last, (int)now);
 		} else {
-			printf_s("Последний");
-			last = DDes->last->number;
-			DDes = DekDeletItem(DDes, type);
-			now = (DekItem*)DDes->last->number;
+			now = (DekItem*)des->first->number;
+			des = DekDeletItem(des, type);
+			printf_s("Елемент %d был снят. Теперь дек полностью пуст.",(int)now);
+			_getch();
 		}
-		printf_s(" елемент %d снят, новый последний елемент %d\n", (int)last, (int)now);
-		DekShow();
-		_getch();
 	}
+	return des;
 }
 
 void DekShow() {
@@ -394,7 +473,7 @@ void DekShow() {
 			printf_s("%d,", dl->number);
 			dl = (DekItem*)dl->previus;
 		}
-	} else {
+	} else if(DDes->count < 2000000){
 		dl = DDes->last;
 		fopen_s(&file, "DekElems.txt", "w");
 		for (i = 0; i < DDes->count; i++) {
@@ -408,13 +487,19 @@ void DekShow() {
 		}
 		fclose(file);
 		say("Слишком много елементов для вывода, вывод произвидён в файл DekElems.txt в папке с программой");
+	} else {
+		say("Слишком много елементов даже для вывода в файл, так что вы не увидете его :) ");
 	}
 }
 
 void DekCount() {
-	printf_s("В деке %d елементов.\n",DDes->count);
-	DekShow();
-	_getch();
+	if (DDes != NULL) {
+		printf_s("В деке %d елементов.\n", DDes->count);
+		DekShow();
+		_getch();
+	} else { 
+		printf_s("Дек пустой."); _getch();
+	}
 }
 
 void sap() {

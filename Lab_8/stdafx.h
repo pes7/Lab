@@ -12,6 +12,7 @@
 #include "Windows.h"
 #include "locale.h"
 #include "string.h"
+#include "Defines.h"
 
 
 
