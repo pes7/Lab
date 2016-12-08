@@ -19,7 +19,7 @@ void cls(HANDLE hConsole)
 		return;
 	}
 	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
-	if (!FillConsoleOutputCharacter(hConsole, (TCHAR) ' ',
+	if (!FillConsoleOutputCharacter(hConsole, (TCHAR) '1',
 		dwConSize, coordScreen, &cCharsWritten)) {
 		return;
 	}
@@ -79,7 +79,7 @@ void SmartChoose(Menu *menu) {
 		if (menu->slots > 0) {
 			for (j = 0; j <= menu->slots; j++) {
 				if (menu->binds[j].binds != NULL) {
-					for (g = 0; g < menu->binds[j].count; g++) {
+					for (g = 0; g < strlen(menu->binds[j].binds); g++) {
 						if (menu->binds[j].binds[g] == i && menu->binds[j].binds[g] != (int)NULL) {
 							cls(hStdout);
 							void(*does)() = (void*)menu->pointers[j];
@@ -93,7 +93,7 @@ void SmartChoose(Menu *menu) {
 		}
 		/*ѕроверка на перерывание если таковое имеетьс€*/
 		if (menu->properties.dbreak.binds != NULL) {
-			for (j = 0; j < menu->properties.dbreak.count; j++) {
+			for (j = 0; j < strlen(menu->properties.dbreak.binds); j++) {
 				if (i == menu->properties.dbreak.binds[j]) {
 					d = 1;
 				}

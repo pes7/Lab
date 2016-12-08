@@ -1,7 +1,6 @@
-﻿  stdafx.cpp
-  Lab_9.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(59): warning C4133: 'function': incompatible types - from 'char [100]' to 'FILE *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(70): warning C4013: '_getch' undefined; assuming extern returning int
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(68): warning C4477: 'printf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'FILE *'
+﻿  Lab_9.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(60): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(61): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(165): warning C4013: '_getch' undefined; assuming extern returning int
   Lab_9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_9.exe
   Lab_9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_9.pdb (Full PDB)

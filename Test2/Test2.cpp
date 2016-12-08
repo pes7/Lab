@@ -17,7 +17,7 @@ void _say(char *text) {
 
 typedef struct {
 	int number;
-	int *next;
+	int *previus;
 } SpisItem;
 
 typedef struct {
@@ -26,131 +26,190 @@ typedef struct {
 } SpisDescr;
 
 SpisDescr *SSDes;
-//SpisDescr *SpisPushF(SpisDescr*, int, int, int);
 
-struct List{
-	int num;
-	struct List *next;
-};
 
-struct List *CreateFirstElem(int num) {
-	struct List *list = (struct List*)malloc(sizeof(struct List));
-	list->num = num;
-	list->next = list;
-	return list;
+SpisDescr *CreateSpisDescr() {
+	SpisDescr *des = (SpisDescr*)malloc(sizeof(SpisDescr));
+	des->first = NULL;
+	des->count = 0;
+	return des;
 }
 
-struct List *AddItem(struct List *list, int num) {
-	struct List *item, *p;
-	if (IsListEmpty(list)) {
-		item = (struct List*)malloc(sizeof(struct List));
-		p = list->next;
-		item->num = num;
-		list->next = item;
-		item->next = p;
-	} else {
-		list = CreateFirstElem(num);
-	}
-	return list;
-}
-
-struct List *GetSelectedItem(struct List *list,int elem) {
-	struct List *p = list;
-	printf_s("[%d]\n",p->num);
-	for (int i = 0; i < elem; i++) {
-		p = p->next;
-		printf_s("[%d]\n", p->num);
-	}
-	return p;
-}
-
-void ListShow(struct List *list) {
-	struct List *p;
-	int *arra = (int*)malloc(sizeof(int)), i = 0, j = 0;
-	p = list;
-	if (IsListEmpty(list)) {
-		if (GiveCountOfList(list) > 1) {
-			do {
-				//printf("%d ", p->num);
-				arra = (int*)realloc(arra, sizeof(int)*(i + 1));
-				arra[i] = p->num;
-				p = p->next;
-				i++;
-			} while (p != list);
-			while (i != 1) {
-				if (j == 0) {
-					printf_s("%d,", arra[0]);
-					j++;
-				}
-				i--;
-				printf_s("%d,", arra[i]);
-			}
-		}
-		else {
-			printf_s("%d", list->num);
-		}
-	} else {
-		printf_s("Ошибка. Лист пустой.");
-	}
-}
-
-struct List *ListAddIndexedElement(struct List *list, int index,int number, int method) {
-	int i = 0;
-	struct List *item, *p, *l = list;
-	item = (struct List*)malloc(sizeof(struct List));
-
-	/*Вставить после*/
-	if (method == 0) {
-		for (i = 0; i < GiveCountOfList(list) - index; i++) {
-			l = l->next;
-		}
-	} else {
-	/*Вставить перед*/
-		for (i = 0; i < GiveCountOfList(list) - index - 1; i++) {
-			l = l->next;
-		}
-	}
-	p = l->next;
-	item->num = number;
-	l->next = item;
-	item->next = p;
-
-	return list;
-}
-
-struct List *RemoveIndexedElement(struct List *list, int index) {
+SpisItem *GiveFirst(SpisDescr *des) {
 	int i;
-	struct List *l = list;
-	if (GiveCountOfList(list) > 1) {
-		for (i = 0; i < GiveCountOfList(list) - index - 1; i++) {
-			l = l->next;
-		}
-		l->next = l->next->next;
+	SpisItem *first = des->first;
+	for (i = 0; i < des->count - 1; i++) {
+		first = first->previus;
+	}
+	return first;
+}
+
+SpisDescr *SpisAddItem(SpisDescr *des,int num) {
+	SpisItem *item = (SpisItem*)malloc(sizeof(SpisItem));
+	SpisItem *last;
+	if (!IsListZerro(des)) {
+		des = CreateSpisDescr();
+	}
+	if (des->count == 0) {
+		item->number = num;
+		des->first = item;
+		des->count++;
 	} else {
-		free(list);
-		list = NULL;
+		last = des->first;
+		item->previus = last;
+		item->number = num;
+		last = GiveFirst(des);
+		last->previus = item;
+
+		des->first = item;
+		des->count++;
 	}
-	return list;
 }
 
-int GiveCountOfList(struct List *list) {
-	struct List *l = list;
-	int i = 0;
-	if (IsListEmpty(list)) {
-		do {
-			l = l->next;
-			i++;
-		} while (l != list);
+int IsListZerro(SpisDescr *des) {
+	int is = 1;
+	if (des == NULL) {
+		is = 0;
 	}
-	return i;
+	return is;
 }
 
-int IsListEmpty(struct List *list) {
-	int i = 1;
-	if (list == NULL) {
-		i = 0;
+void ListShow(SpisDescr *des) {
+	int i, *arr;
+	SpisItem *last;
+	if (IsListZerro(des)) {
+		if (des->count > 200) {
+			last = des->first;
+			arr = (int*)malloc(sizeof(int) * des->count);
+			for (i = 0; i < des->count; i++) {
+				arr[i] = last->number;
+				last = last->previus;
+			}
+			for (i = des->count - 1; i >= 0; i--) {
+				printf_s("%d,", arr[i]);
+			}
+		} else {
+			printf_s("Вывод на екран такого количества елементов, не есть рациональным, по етому вывод будет произвидён в файл list.txt");
+			/*Сделать вывод в файл*/
+		}
+	} else {
+		printf_s("Список пуст.\n");
 	}
-	return i;
+}
+
+SpisDescr *SetListFirst(SpisDescr *des, int index) {
+	SpisItem *last = des->first;
+	int i;
+	for (i = 0; i < index; i++) {
+		last = last->previus;
+	}
+	des->first = last;
+	return des;
+}
+
+SpisDescr *RemoveItem(SpisDescr *des) {
+	SpisItem *last = des->first, *bottom = GiveFirst(des);
+	if (des->count > 1) {
+		bottom->previus = last->previus;
+		des->first = last->previus;
+		free(last);
+		des->count--;
+	} else {
+		free(des->first);
+		free(des);
+		des = NULL;
+	}
+	return des;
+}
+
+SpisDescr *FindItem(SpisDescr *des,int num) {
+	SpisItem *now = des->first;
+	int i;
+	for (i = 0; i < des->count; i++) {
+		if (now->number == num) {
+			des = SetListFirst(des,i);
+			printf_s("Елемент найден!\n",i);
+			i = des->count;
+			return des;
+		}
+		now = now->previus;
+	}
+	printf_s("Елемент не найден!\n");
+	return des;
+}
+
+SpisDescr *GList;
+
+void demo_show_loshadki() {
+	int num, i;
+	char c;
+	ListShow(GList);
+	while (1) {
+		c = _getch();
+		c = toupper(c);
+		system("cls");
+		switch (c)
+		{
+		case 'D':
+			if (IsListZerro(GList)) {
+				SetListFirst(GList, 1);
+			} else {
+				printf_s("Ошибка. Список пустой.\n");
+			}
+			break;
+		case 'A':
+			printf_s("Введите число: ");
+			if (scanf_s("%d", &num)) {
+				GList = SpisAddItem(GList, num);
+			} else {
+				printf_s("Ошибка ввода!.");
+				rewind(stdin);
+			}
+			break;
+		case 'S':
+			if (IsListZerro(GList)) {
+				GList = RemoveItem(GList);
+			} else {
+				printf_s("Ошибка. Список пустой, вы не можете удалить елемет.\n");
+			}
+			break;
+		case 'F':
+			if (IsListZerro(GList)) {
+				printf_s("Впишите искуемое число: ");
+				if (scanf_s("%d", &num)) {
+					GList = FindItem(GList, num);
+				} else {
+					printf_s("Ошибка ввода!.");
+					rewind(stdin);
+				}
+			} else {
+				printf_s("Ошибка. Список пустой.\n");
+			}
+			break;
+		case 'G':
+			printf_s("Сколько елементов сгенирировать: ");
+			if (scanf_s("%d", &num)) {
+				if (num > 1 && num < 20000000) {
+					for (i = 0; i < num; i++) {
+						GList = SpisAddItem(GList, rand()%num+1);
+					}
+					printf_s("%d елементов сгенирировано!\n", num);
+				} else {
+					printf_s("Не возможно сгенирировать %d елементов\n",num);
+				}
+			} else {
+				printf_s("Ошибка ввода.");
+			}
+			break;
+		case 'R':
+			printf_s("В списке %d елемент/а/ов.\n",GList->count);
+			break;
+		default:
+
+			break;
+		}
+		ListShow(GList);
+	}
 }
 
 int main()
@@ -158,12 +217,16 @@ int main()
 	setlocale(LC_ALL, "RUS");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
+	srand(time(NULL));
 
-	
-	struct List *list;
+	demo_show_loshadki();
 
-	//list->num - first element
-	//
+	SetListFirst(GList, 0);
+
+	ListShow(GList);
+
+	_getch();
+	/*
 
 	list = CreateFirstElem(30); //1
 	list = AddItem(list, 40); //2
@@ -189,6 +252,7 @@ int main()
 	_getch();
 	ListShow(list);
 	_getch();
+	*/
 	/*
 	SSDes = (SpisDescr*)malloc(sizeof(SpisDescr));
 	SSDes->count = 0;

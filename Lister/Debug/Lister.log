@@ -1,4 +1,15 @@
 ﻿  Lister.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(24): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(21): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(474): warning C4133: '=': incompatible types - from 'int *' to 'SpisItem *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(482): warning C4013: 'IsListZerro' undefined; assuming extern returning int
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(492): warning C4133: '=': incompatible types - from 'SpisItem *' to 'int *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(495): warning C4133: '=': incompatible types - from 'SpisItem *' to 'int *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(519): warning C4133: '=': incompatible types - from 'int *' to 'SpisItem *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(564): warning C4133: '=': incompatible types - from 'int *' to 'SpisItem *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(574): warning C4133: '=': incompatible types - from 'int *' to 'SpisItem *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(596): warning C4133: '=': incompatible types - from 'int *' to 'SpisItem *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(592): warning C4474: 'printf_s' : too many arguments passed for format string
+  c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(592): note: placeholders and their parameters expect 0 variadic arguments, but 1 were provided
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lister\lister.cpp(500): warning C4716: 'SpisAddItem': must return a value
   Lister.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lister.exe
   Lister.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lister.pdb (Full PDB)

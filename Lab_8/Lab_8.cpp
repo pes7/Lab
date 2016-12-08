@@ -1,13 +1,9 @@
-// Lab_8.cpp : Defines the entry point for the console application.
+ // Lab_8.cpp : Defines the entry point for the console application.
 //
 
 #include "stdafx.h"
 #include "CMenu.cpp"
 #include "Defs.h"
-
-void _say(char *str) {
-	printf_s("%s", str);
-}
 
 int main() {
 	int slots = 0;
@@ -23,14 +19,12 @@ int main() {
 
 	menu->text[menu->slots].str = "D)Переобразование номера месяца в его название";
 	menu->binds[menu->slots].binds = "DВ";
-	menu->binds[menu->slots].count = 2;
 	menu->pointers[menu->slots] = (int)(void*)&NReTranslateToString;
 	menu->slots++;
 
 	menu->text[menu->slots].str = "F)Проверка слова на палиндромизм";
 	menu->binds[menu->slots].binds = "FА";
-	menu->binds[menu->slots].count = 2;
-	menu->pointers[menu->slots] = (int)(void*)&NIsPalendomizm;
+	menu->pointers[menu->slots] = (int)(void*)&RecurStart;
 
 	menu->properties.header = "Меню программы:";
 	menu->properties.height = 0;
@@ -39,8 +33,6 @@ int main() {
 	menu->properties.size.height = 11;
 	menu->properties.size.width = 51;
 	menu->properties.dbreak.binds = "PЗ";
-	menu->properties.dbreak.count = 2;
-	menu->properties.prioritet = 0;
 
 	SmartChoose(menu);
 

@@ -64,8 +64,12 @@ typedef struct {
 	int count; /*Размер*/
 } DekDescr;
 
-/*Лист*/
-struct List {
-	int num; /*Число*/
-	struct List *next; /*Ссылка не следующий узел*/
-};
+typedef struct {
+	int number;
+	int *previus;
+} SpisItem;
+
+typedef struct {
+	int count;
+	SpisItem *first;
+} SpisDescr;
