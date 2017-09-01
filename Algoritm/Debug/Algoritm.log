@@ -6,5 +6,6 @@
   CMenu.cpp
   Algoritm.cpp
   Generating Code...
+  LINK : C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Algoritm.exe not found or not built by the last incremental link; performing full link
   Algoritm.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Algoritm.exe
   Algoritm.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Algoritm.pdb (Full PDB)

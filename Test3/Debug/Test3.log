@@ -1,0 +1,6 @@
+﻿  stdafx.cpp
+  Test3.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\test3\test3.cpp(15): warning C4477: 'printf_s' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'double'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\test3\test3.cpp(12): warning C4101: 'fp': unreferenced local variable
+  Test3.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Test3.exe
+  Test3.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Test3.pdb (Full PDB)

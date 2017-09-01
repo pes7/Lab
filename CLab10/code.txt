@@ -1,0 +1,299 @@
+// CLab10.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "Windows.h"
+#include "locale.h"
+#include "string.h"
+#include "conio.h"
+
+typedef struct Hotel {
+	struct Hotel *previus;
+	char *name;
+	char *city;
+	short int rooms;
+	short int zvezd;
+}Hotel;
+
+typedef struct {
+	int count;
+	Hotel *first;
+}GHotels;
+
+typedef struct {
+	char *in;
+	char *out;
+}NameOfFile;
+
+
+void GetFiles(int argc, char ** argv);
+void ShowHotels(GHotels *hotels);
+Hotel *GetIndexedHotel(GHotels *hotel, int index);
+GHotels *SortHotel(GHotels *hotels);
+GHotels *GetHotel(GHotels *hotel);
+GHotels *GAddHotel(GHotels *hotels, char *name, char *city, int rooms, int zvezd);
+void AddHotel();
+
+NameOfFile *NameOfFiles = NULL;
+int main(int argc, char ** argv)
+{
+	GHotels *hotels;
+	char L;
+	setlocale(LC_ALL, "RUS");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	NameOfFiles = (NameOfFile*)malloc(sizeof(NameOfFile));
+	NameOfFiles->in = (char*)malloc(sizeof(char) * 50);
+	NameOfFiles->out = (char*)malloc(sizeof(char) * 55);
+
+	GetFiles(argc, argv);
+	printf_s("In: %s\nOut: %s\n", NameOfFiles->in, NameOfFiles->out);
+	system("cls");
+	while (1) {
+		printf_s("D)Добавить отель в файл\n");
+		printf_s("F)Отсортировать файл с отелями, по количеству звёзд\n");
+		printf_s("G)Выбрать другой файл\n");
+		L = _getch();
+		L = toupper(L);
+		switch (L)
+		{
+		case'D':
+		case'В':
+			AddHotel();
+			break;
+		case'F':
+		case'А':
+			hotels = NULL;
+			hotels = GetHotel(hotels);
+			if (hotels != NULL) {
+				ShowHotels(hotels);
+				_getch();
+				system("cls");
+				hotels = SortHotel(hotels);
+				ShowHotels(hotels);
+			}
+			break;
+		case'G':
+		case'П':
+			NameOfFiles->in = NULL;
+			NameOfFiles->out = NULL;
+			GetFiles(argc, argv);
+			break;
+		}
+		_getch();
+		system("cls");
+	}
+	
+    return 0;
+}
+
+void GetFiles(int argc, char ** argv) {
+	char set[100];
+	if (argc > 1) {
+		strcpy_s(NameOfFiles->in, strlen(argv[1]) * sizeof(char) + 16, argv[1]);
+	} else {
+		printf_s("Введите название файла: ");
+		if (!scanf_s("%s", NameOfFiles->in, 10)) {
+			printf_s("Error");
+		}
+	}
+	strcpy_s(NameOfFiles->out, 50, NameOfFiles->in);
+	strcat_s(NameOfFiles->out, 55, ".out");
+}
+
+void ShowHotels(GHotels *hotels) {
+	int i = 0;
+	Hotel *ht = hotels->first;
+	FILE *fl;
+	fopen_s(&fl,NameOfFiles->out, "w+");
+	for (i; i < hotels->count; i++) {
+		printf_s("Название: %s",ht->name);
+		fprintf_s(fl,"%s", ht->name);
+		printf_s("Насл. пункт: %s", ht->city);
+		fprintf_s(fl, "%s", ht->city);
+		printf_s("Кол. комнат: %d\n", ht->rooms);
+		fprintf_s(fl, "%d\n", ht->rooms);
+		printf_s("Кол. звёзд: %d\n\n", ht->zvezd);
+		fprintf_s(fl, "%d\n", ht->zvezd);
+		ht = ht->previus;
+	}
+	fclose(fl);
+}
+
+Hotel *GetIndexedHotel(GHotels *hotel, int index) {
+	Hotel *ht = hotel->first;
+	int i = 0;
+	for (i; i < index; i++) {
+		ht = ht->previus;
+	}
+	return ht;
+}
+
+GHotels *SortHotel(GHotels *hotels) {
+	Hotel *ht = hotels->first, *first, *pre;
+	int i = 0, max = 0, is = 1, go = 0;
+	while (is)
+	{
+		if (i == hotels->count) {
+			i = 0;
+			ht = hotels->first;
+		}
+		if (ht != NULL) {
+			if (ht->previus != NULL) {
+				if (ht->zvezd < ht->previus->zvezd) {
+					go = 0;
+					if (ht != hotels->first) {
+						pre = ht->previus;
+						first = ht;
+						first->previus = pre->previus;
+						pre->previus = first;
+						GetIndexedHotel(hotels, i - 1)->previus = pre;
+					} else {
+						pre = ht->previus;
+						first = ht;
+						first->previus = pre->previus;
+						pre->previus = first;
+						hotels->first = pre;
+					}
+					ht = pre->previus;
+				} else {
+					go++;
+					if (go >= hotels->count) {
+						is = 0;
+					}
+					ht = ht->previus;
+				}
+			}
+		}
+		i++;
+	}
+	return hotels;
+}
+
+GHotels *GetHotel(GHotels *hotels) {
+	FILE *str;
+	char *k, name[100] = { 0 }, city[100] = { 0 };
+	int count = 0, rooms = 0, zvezd = 0;
+	if (hotels == NULL) {
+		hotels = (GHotels*)malloc(sizeof(GHotels));
+		hotels->count = 0;
+		hotels->first = NULL;
+	}
+	k = (char*)malloc(sizeof(char) * 100);
+	fopen_s(&str, NameOfFiles->in, "r");
+	if (str == NULL) {
+		puts("Не удалось открыть файл.");
+	} else {
+		while (fgets(k, 100, str) != NULL) {
+			switch (count)
+			{
+			case 0:
+				strcpy_s(name, 98, k);
+				break;
+			case 1:
+				strcpy_s(city, 98, k);
+				break;
+			case 2:
+				rooms = atoi(k);
+				break;
+			case 3:
+				zvezd = atoi(k);
+				break;
+			}
+			if (count == 3) {
+				hotels = GAddHotel(hotels, name, city, rooms, zvezd);
+				count = 0;
+			}
+			else {
+				count++;
+			}
+		}
+		fclose(str);
+	}
+	free(k);
+	_getch();
+	return hotels;
+}
+
+GHotels *GAddHotel(GHotels *hotels, char *name, char *city, int rooms, int zvezd) {
+	Hotel *ht = (Hotel*)malloc(sizeof(Hotel)), *lht;
+	ht->name = (char*)malloc(sizeof(char) * 100);
+	ht->city = (char*)malloc(sizeof(char) * 100);
+
+	strcpy_s(ht->name, 100, name);
+	strcpy_s(ht->city, 100, city);
+	ht->rooms = rooms;
+	ht->zvezd = zvezd;
+	ht->previus = NULL;
+	if (hotels->first != NULL) {
+		lht = hotels->first;
+		ht->previus = lht;
+	}
+	hotels->first = ht;
+	hotels->count++;
+	return hotels;
+}
+
+void AddHotel() {
+	FILE *str;
+	char *c, *k, D;
+	int count = 0, is = 1;
+	c = (char*)malloc(sizeof(char) * 100);
+	k = (char*)malloc(sizeof(char) * 100);
+	start:
+		fopen_s(&str, NameOfFiles->out, "a+");
+		system("cls");
+	n:
+		printf_s("Введите название отеля: ");
+		fgets(&k, 98, stdin);
+		if (strlen(&k) == 1) {
+			printf_s("Ошибка. Строка пуста.\n");
+			goto n;
+		}
+		fprintf_s(str, "%s", &k);
+
+	l:
+		printf_s("Населённый пункт: ");
+		fgets(&k, 98, stdin);
+		if (strlen(&k) == 1) {
+			printf_s("Ошибка. Строка пуста.\n");
+			goto l;
+		}
+		fprintf_s(str, "%s", &k);
+
+	c:
+		printf_s("Количество номеров: ");
+		if (!scanf_s("%d", &count)) {
+			printf_s("Ошибка ввода.\n");
+			rewind(stdin);
+			goto c;
+		}
+		if (count < 1 || count > 3000) {
+			printf_s("Неверное количество номеров.\n");
+			rewind(stdin);
+			goto c;
+		}
+		fprintf_s(str, "%d\n", count);
+
+	z:
+		printf_s("Количество звёзд: ");
+		if (!scanf_s("%d", &count)) {
+			printf_s("Ошибка ввода.\n");
+			rewind(stdin);
+			goto c;
+		}
+		if (count < 0 || count > 6) {
+			printf_s("Неверное количество звёзд.\n");
+			rewind(stdin);
+			goto c;
+		}
+		fprintf_s(str, "%d\n", count);
+		printf_s("Запись завершина!\n");
+		fclose(str);
+		printf_s("Записать еще один отель? D)Да F)Нет\n");
+		D = _getch();
+		D = toupper(D);
+		if (D == 'D' || D == 'В') {
+			goto start;
+		}
+}

@@ -40,6 +40,43 @@ void _cls() {
 	system("cls");
 }
 
+/*Всё работает, только вывод над сделать красивый*/
+/*
+void ShowTree(TreeTop *tree, int raz) {
+	int n1 = 0, n2 = 0, n3 = 0;
+	int absolute_x = 110;
+	HANDLE consoleoutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD Coord;
+
+	if (tree->num != NULL) {
+		n1 = tree->num;
+	}
+	if (tree->left != NULL) {
+		if (tree->left->num != NULL) {
+			n2 = tree->left->num;
+		}
+	}
+	if (tree->right != NULL) {
+		if (tree->right->num != NULL) {
+			n3 = tree->right->num;
+		}
+	}
+
+	Coord.X = (absolute_x / 2) - (8 * raz);
+	Coord.Y = raz;
+	SetConsoleCursorPosition(consoleoutput, Coord);
+	printf_s("%d<-%d->%d\n", n2, n1, n3);
+	raz++;
+
+	if (tree->left != NULL) {
+		ShowTree(tree->left, raz);
+	}
+	if (tree->right != NULL) {
+		ShowTree(tree->right, raz);
+	}
+}
+*/
+
 /*
 int de;
 void kek();
@@ -280,6 +317,73 @@ Descr* createitem(int number, Descr *des) {
 	des->count++;
 	return des;
 }
+
+/*
+for (i = 0; i < word_count; i++) {
+//printf_s("%d > %d\n", reiting[i].sovpad, reiting[max].sovpad);
+if (reiting[i].sovpad == reiting[max].sovpad && i != 0) {
+if (is_screen == 1) {
+//printf_s("Было обнаружено слово: {%s} с таким же количеством совпадений, старшое слово {%s} было перезаписано.\n",reiting[i].str,reiting[max]);
+}
+//fprintf_s(out, "Было обнаружено слово: {%s} с таким же количеством совпадений, старшое слово {%s} было перезаписано.\n", reiting[i].str, reiting[max]);
+}
+if (reiting[i].sovpad >= reiting[max].sovpad) {
+max = i;
+}
+}
+*/
+
+/*
+fopen_s(&str, "C:/Users/ukolo/OneDrive/Документы/Visual Studio 2015/Projects/Lab/Debug/str.IN", "r");
+if (str == NULL) {
+puts("Не удалось открыть файл");
+}
+while (fgets(c,100,str) != NULL) {
+printf_s("%s", c);
+}
+*/
+/*
+while (1) {
+fopen_s(&str, "test.txt", "a+");
+fprintf_s(str, "-------------------------------\n");
+say("Введите название отеля: ");
+fgets(k, 98, stdin);
+fprintf_s(str, "[n]%s", &k);
+say("Населённый пункт: ");
+fgets(k, 98, stdin);
+fprintf_s(str, "[l]%s", &k);
+say("Количество номеров: ");
+fgets(k, 98, stdin);
+fprintf_s(str, "[c]%s", &k);
+say("Количество звёзд: ");
+fgets(k, 98, stdin);
+fprintf_s(str, "[z]%s", &k);
+fclose(str);
+say("Запись завершина!\n");
+_getch();
+}
+*/
+/*
+int i = 0, j = 0;
+fopen_s(&str, "test.txt", "r");
+if (str == NULL) {
+puts("Не удалось открыть файл");
+}
+while (1) {
+c = fgets(k, sizeof(k),str);
+if (c == NULL) {
+if (feof(k) != 0)
+{
+say("\nЧтение файла закончено\n");
+break;
+} else {
+say("\nОшибка чтения из файла\n");
+break;
+}
+}
+printf("/n%s", str);
+}
+*/
 
 
 /*

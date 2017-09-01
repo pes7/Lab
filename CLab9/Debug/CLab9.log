@@ -1,0 +1,5 @@
+﻿  Start.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab9\start.cpp(85): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab9\start.cpp(86): warning C4018: '<': signed/unsigned mismatch
+  CLab9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CLab9.exe
+  CLab9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CLab9.pdb (Full PDB)

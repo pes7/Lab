@@ -1,0 +1,15 @@
+﻿  stdafx.cpp
+  CFile.cpp
+CFile.cpp(22): warning C4018: '<': signed/unsigned mismatch
+CFile.cpp(25): warning C4018: '<': signed/unsigned mismatch
+CFile.cpp(50): warning C4018: '<': signed/unsigned mismatch
+CFile.cpp(50): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+CFile.cpp(133): warning C4018: '<': signed/unsigned mismatch
+CFile.cpp(134): warning C4018: '<': signed/unsigned mismatch
+  Lab_9.cpp
+  Structures.cpp
+  Generating code
+  All 11 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Lab_9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Release\Lab_9.exe
+  Lab_9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Release\Lab_9.pdb (Full PDB)

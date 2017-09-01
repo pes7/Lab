@@ -458,7 +458,7 @@ void DekCount() {
 
 /*---Cycle-Spisok-Zone---*/
 
-/*Создать дескриптор стека*/
+/*Создать дескриптор списка*/
 SpisDescr *CreateSpisDescr() {
 	/*Указатель на дескриптор списка*/
 	SpisDescr *des = (SpisDescr*)malloc(sizeof(SpisDescr));
@@ -517,7 +517,7 @@ void ListShow(SpisDescr *des) {
 		*arr; /*Массив чисел*/
 	SpisItem *last; /*Указатель на елемент списка*/
 	if (IsListZerro(des)) {
-		if (des->count < 200) {
+		if (des->count > 1) {
 			last = des->first;
 			arr = (int*)malloc(sizeof(int) * des->count);
 			for (i = 0; i < des->count; i++) {
@@ -528,9 +528,9 @@ void ListShow(SpisDescr *des) {
 				printf_s("%d,", arr[i]);
 			}
 		} else {
-			printf_s("Вывод на екран такого количества елементов, не есть рациональным, по етому вывод будет произвидён в файл list.txt");
-			/*Сделать вывод в файл*/
+			printf_s("%d",des->first->number);
 		}
+		ListShowHigh();
 	} else {
 		printf_s("Список пуст.\n");
 	}
@@ -568,10 +568,12 @@ void ListShowHigh() {
 SpisDescr *SetListFirst(SpisDescr *des, int index) {
 	SpisItem *last = des->first; /*Указатель на елемент списка*/
 	int i; /*Счётчик цикла*/
-	for (i = 0; i < index; i++) {
-		last = last->previus;
+	if (des->count > 1) {
+		for (i = 0; i < index; i++) {
+			last = last->previus;
+		}
+		des->first = last;
 	}
-	des->first = last;
 	return des;
 }
 
@@ -617,7 +619,6 @@ void demo_show_loshadki() {
 		i; /*Счётчик цикла*/
 	char c; /*Нажатый символ*/
 	ListShow(GList);
-	ListShowHigh();
 	while (1) {
 		c = _getch();
 		c = toupper(c);

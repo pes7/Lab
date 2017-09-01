@@ -1,7 +1,4 @@
 ﻿  CTree.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\ctree\ctree.cpp(50): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\ctree\ctree.cpp(54): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\ctree\ctree.cpp(59): warning C4047: '!=': 'int' differs in levels of indirection from 'void *'
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\ctree\ctree.cpp(86): warning C4047: '=': 'int' differs in levels of indirection from 'void *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\ctree\ctree.cpp(119): warning C4716: 'ReplaceTreeElemRec': must return a value
   CTree.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CTree.exe
   CTree.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CTree.pdb (Full PDB)

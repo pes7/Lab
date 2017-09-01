@@ -1,6 +1,13 @@
-﻿  Lab_9.cpp
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(60): warning C4018: '<': signed/unsigned mismatch
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(61): warning C4018: '<': signed/unsigned mismatch
-c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\lab_9.cpp(165): warning C4013: '_getch' undefined; assuming extern returning int
+﻿  stdafx.cpp
+  Structures.cpp
+  Lab_9.cpp
+  CFile.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\cfile.cpp(22): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\cfile.cpp(25): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\cfile.cpp(50): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\cfile.cpp(50): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\cfile.cpp(133): warning C4018: '<': signed/unsigned mismatch
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_9\cfile.cpp(134): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   Lab_9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_9.exe
   Lab_9.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_9.pdb (Full PDB)

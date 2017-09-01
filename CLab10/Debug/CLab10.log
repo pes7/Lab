@@ -1,0 +1,13 @@
+﻿  Hotel.cpp
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(5): warning C4101: 'set': unreferenced local variable
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(178): warning C4133: 'function': incompatible types - from 'char *' to 'FILE *'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(224): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[150]'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(224): warning C4024: 'fgets': different types for formal and actual parameter 1
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(225): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char (*)[150]'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(225): warning C4024: 'strlen': different types for formal and actual parameter 1
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(232): warning C4047: 'function': 'char *' differs in levels of indirection from 'char (*)[150]'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(232): warning C4024: 'fgets': different types for formal and actual parameter 1
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(233): warning C4047: 'function': 'const char *' differs in levels of indirection from 'char (*)[150]'
+c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\clab10\hotel.cpp(233): warning C4024: 'strlen': different types for formal and actual parameter 1
+  CLab10.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CLab10.exe
+  CLab10.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\CLab10.pdb (Full PDB)

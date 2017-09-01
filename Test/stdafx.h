@@ -9,7 +9,10 @@
 
 #include <stdio.h>
 #include <tchar.h>
-
+#include "Windows.h"
+#include "locale.h"
+#include "string.h"
+#include <malloc.h>
 
 
 // TODO: reference additional headers your program requires here

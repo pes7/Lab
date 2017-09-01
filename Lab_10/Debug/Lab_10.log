@@ -1,5 +1,5 @@
-﻿  stdafx.cpp
-  Lab_10.cpp
+﻿  Lab_10.cpp
 c:\users\ukolo\onedrive\документы\visual studio 2015\projects\lab\lab_10\lab_10.cpp(71): warning C4101: 'what': unreferenced local variable
+  LINK : C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_10.exe not found or not built by the last incremental link; performing full link
   Lab_10.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_10.exe
   Lab_10.vcxproj -> C:\Users\ukolo\OneDrive\Документы\Visual Studio 2015\Projects\Lab\Debug\Lab_10.pdb (Full PDB)
